@@ -1,5 +1,8 @@
 package com.zakrzewski.intentionbook.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +15,9 @@ public class BookOfIntentionModel {
 
     @Column(name = "date_of_mass", nullable = false)
     private String dateOfMass;
+
+    @Column(name = "time_of_mass", nullable = false)
+    private String timeOfMass;
 
     @Column(name = "description_of_intention", nullable = false)
     private String descriptionOfIntention;
@@ -28,8 +34,9 @@ public class BookOfIntentionModel {
     public BookOfIntentionModel() {
     }
 
-    public BookOfIntentionModel(String dateOfMass, String descriptionOfIntention, String whichPriest, String othersAttention, String payment) {
+    public BookOfIntentionModel(String dateOfMass, String timeOfMass, String descriptionOfIntention, String whichPriest, String othersAttention, String payment) {
         this.dateOfMass = dateOfMass;
+        this.timeOfMass = timeOfMass;
         this.descriptionOfIntention = descriptionOfIntention;
         this.whichPriest = whichPriest;
         this.othersAttention = othersAttention;
@@ -50,6 +57,14 @@ public class BookOfIntentionModel {
 
     public void setDateOfMass(String dateOfMass) {
         this.dateOfMass = dateOfMass;
+    }
+
+    public String getTimeOfMass() {
+        return timeOfMass;
+    }
+
+    public void setTimeOfMass(String timeOfMass) {
+        this.timeOfMass = timeOfMass;
     }
 
     public String getDescriptionOfIntention() {
@@ -76,11 +91,25 @@ public class BookOfIntentionModel {
         this.othersAttention = othersAttention;
     }
 
+    @JsonIgnore
     public String getPayment() {
         return payment;
     }
-
+    @JsonSetter
     public void setPayment(String payment) {
         this.payment = payment;
+    }
+
+    @Override
+    public String toString() {
+        return "BookOfIntentionModel{" +
+                "id=" + id +
+                ", dateOfMass='" + dateOfMass + '\'' +
+                ", timeOfMass='" + timeOfMass + '\'' +
+                ", descriptionOfIntention='" + descriptionOfIntention + '\'' +
+                ", whichPriest='" + whichPriest + '\'' +
+                ", othersAttention='" + othersAttention + '\'' +
+                ", payment='" + payment + '\'' +
+                '}';
     }
 }
