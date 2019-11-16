@@ -29,7 +29,11 @@ public class BookOfIntentionsServiceImpl {
         bookOfIntentionRepository.save(bookOfIntentionModel);
     }
 
-    public void editIntention(Long id, BookOfIntentionModel bookOfIntentionModel){
+    public void editIntention(BookOfIntentionModel bookOfIntentionModel){
         bookOfIntentionRepository.save(bookOfIntentionModel);
+    }
+
+    public void deleteIntentionById(Long id){
+        bookOfIntentionRepository.deleteById(id);
     }
 }
