@@ -6,12 +6,12 @@ import com.zakrzewski.intentionbook.enums.AccessEnum;
 import javax.persistence.Entity;
 
 @Entity
-public class SacristanModel extends ChurchWorker {
+public class PriestModel extends ChurchWorker {
 
-    public SacristanModel(String firstName, String lastName, AccessEnum accessEnum) {
+    public PriestModel(String firstName, String lastName, AccessEnum accessEnum) {
         super(firstName, lastName, accessEnum);
     }
 
-    public SacristanModel() {
+    public PriestModel() {
     }
 }

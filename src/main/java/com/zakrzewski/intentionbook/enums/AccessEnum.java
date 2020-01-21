@@ -1,10 +1,12 @@
 package com.zakrzewski.intentionbook.enums;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public enum AccessEnum {
 
     SUPER_USER("Proboszcz"),
-    USER_KAP("Kapłan"),
-    USER_ZAKR("Zakrystianin");
+    USER_KAPLAN("Kapłan"),
+    USER_ZAKRYS("Zakrystianin");
 
     private String roleDescription;
 
@@ -15,5 +17,4 @@ public enum AccessEnum {
     public String getRoleDescription() {
         return roleDescription;
     }
-
 }
