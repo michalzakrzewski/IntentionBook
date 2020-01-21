@@ -2,6 +2,7 @@ package com.zakrzewski.intentionbook.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,20 +41,20 @@ public class BookOfIntentionModel {
     private String payment;
 
     @ManyToOne()
-    @JoinColumn(name = "sacristian_id", nullable = false)
-    private SacristanModel sacristanModel;
+    @JoinColumn(name = "church_worker_id", nullable = false)
+    private ChurchWorker whoAddIntention;
 
     public BookOfIntentionModel() {
     }
 
-    public BookOfIntentionModel(String dateOfMass, String timeOfMass, String descriptionOfIntention, String whichPriest, String othersAttention, String payment, SacristanModel sacristanModel) {
+    public BookOfIntentionModel(String dateOfMass, String timeOfMass, String descriptionOfIntention, String whichPriest, String othersAttention, String payment, ChurchWorker whoAddIntention) {
         this.dateOfMass = dateOfMass;
         this.timeOfMass = timeOfMass;
         this.descriptionOfIntention = descriptionOfIntention;
         this.whichPriest = whichPriest;
         this.othersAttention = othersAttention;
         this.payment = payment;
-        this.sacristanModel = sacristanModel;
+        this.whoAddIntention = whoAddIntention;
     }
 
     public Long getId() {
@@ -104,12 +105,12 @@ public class BookOfIntentionModel {
         this.othersAttention = othersAttention;
     }
 
-    public SacristanModel getSacristanModel() {
-        return sacristanModel;
+    public ChurchWorker getWhoAddIntention() {
+        return whoAddIntention;
     }
 
-    public void setSacristanModel(SacristanModel sacristanModel) {
-        this.sacristanModel = sacristanModel;
+    public void setWhoAddIntention(ChurchWorker whoAddIntention) {
+        this.whoAddIntention = whoAddIntention;
     }
 
     @JsonIgnore
@@ -131,6 +132,7 @@ public class BookOfIntentionModel {
                 ", whichPriest='" + whichPriest + '\'' +
                 ", othersAttention='" + othersAttention + '\'' +
                 ", payment='" + payment + '\'' +
+                ", whoAddIntention=" + whoAddIntention +
                 '}';
     }
 }
