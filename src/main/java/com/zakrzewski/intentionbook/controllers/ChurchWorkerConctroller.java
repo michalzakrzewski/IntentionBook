@@ -28,4 +28,9 @@ public class ChurchWorkerConctroller {
     public List<ChurchWorker> showSacristians(){
         return churchWorkerService.getAllSacristian();
     }
+
+    @RequestMapping(value = "/show-priests", method = RequestMethod.GET)
+    public List<ChurchWorker> showPriests(){
+        return churchWorkerService.getAllPriest();
+    }
 }

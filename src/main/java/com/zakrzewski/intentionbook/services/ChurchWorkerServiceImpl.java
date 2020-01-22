@@ -28,4 +28,10 @@ public class ChurchWorkerServiceImpl {
         workerList =  workerList.stream().filter(sacristian -> sacristian.getAccessEnum().equals(AccessEnum.USER_ZAKRYS)).collect(Collectors.toList());
         return workerList;
     }
+
+    public List<ChurchWorker> getAllPriest(){
+        List<ChurchWorker> workerList = churchWorkerRepository.findAll();
+        workerList = workerList.stream().filter(priest -> priest.getAccessEnum().equals(AccessEnum.USER_KAPLAN)).collect(Collectors.toList());
+        return workerList;
+    }
 }

@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 @Entity
 public class PriestModel extends ChurchWorker {
 
-    public PriestModel(String firstName, String lastName, AccessEnum accessEnum) {
-        super(firstName, lastName, accessEnum);
+    public PriestModel(String workerLogin, String workerPassword, String firstName, String lastName, AccessEnum accessEnum) {
+        super(workerLogin, workerPassword, firstName, lastName, accessEnum);
     }
 
     public PriestModel() {

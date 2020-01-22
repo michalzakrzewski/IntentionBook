@@ -34,11 +34,11 @@ public class IntentionBookApplication {
     @EventListener(ApplicationReadyEvent.class)
     public void createFinalTemplate() {
 
-        ChurchWorker priest1 = new PriestModel("Priest1", "Priest2", AccessEnum.USER_KAPLAN);
-        ChurchWorker priest2 = new PriestModel("Priest2", "Priest2", AccessEnum.USER_KAPLAN);
-        ChurchWorker priest3 = new PriestModel("SuperPriest1", "SuperPriest2", AccessEnum.SUPER_USER);
-        ChurchWorker sacristian1 = new SacristanModel("Bogusław", "Pietras", AccessEnum.USER_ZAKRYS);
-        ChurchWorker sacristian2 = new SacristanModel("Ryszard", "Gosztyła", AccessEnum.USER_ZAKRYS);
+        ChurchWorker priest1 = new PriestModel("priest1", "qwerty", "Priest1", "Priest1", AccessEnum.USER_KAPLAN);
+        ChurchWorker priest2 = new PriestModel("priest2", "qwerty", "Priest2", "Priest2", AccessEnum.USER_KAPLAN);
+        ChurchWorker priest3 = new PriestModel("superpriest", "qwerty","SuperPriest1", "SuperPriest2", AccessEnum.SUPER_USER);
+        ChurchWorker sacristian1 = new SacristanModel("zakr1", "qwerty", "Bogusław", "Pietras", AccessEnum.USER_ZAKRYS);
+        ChurchWorker sacristian2 = new SacristanModel("zakr2", "qwerty", "Ryszard", "Gosztyła", AccessEnum.USER_ZAKRYS);
         churchWorkerRepository.save(priest1);
         churchWorkerRepository.save(priest2);
         churchWorkerRepository.save(priest3);
