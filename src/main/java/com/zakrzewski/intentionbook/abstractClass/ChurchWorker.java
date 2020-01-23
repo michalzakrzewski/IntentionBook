@@ -28,7 +28,6 @@ public abstract class ChurchWorker implements UserDetails {
     private String workerLogin;
 
     @NotNull
-    @Size(min = 2, max = 50)
     @Column(name = "password")
     private String workerPassword;
 
@@ -42,11 +41,11 @@ public abstract class ChurchWorker implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role_access")
-    private AccessEnum accessEnum;
+    //@Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
+    private String accessEnum;
 
-    public ChurchWorker(String workerLogin, String workerPassword, String firstName, String lastName, AccessEnum accessEnum) {
+    public ChurchWorker(String workerLogin, String workerPassword, String firstName, String lastName, String accessEnum) {
         this.workerLogin = workerLogin;
         this.workerPassword = workerPassword;
         this.firstName = firstName;
@@ -97,17 +96,17 @@ public abstract class ChurchWorker implements UserDetails {
         this.lastName = lastName;
     }
 
-    public AccessEnum getAccessEnum() {
+    public String getAccessEnum() {
         return accessEnum;
     }
 
-    public void setAccessEnum(AccessEnum accessEnum) {
+    public void setAccessEnum(String accessEnum) {
         this.accessEnum = accessEnum;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(accessEnum.getRoleDescription()));
+        return Collections.singleton(new SimpleGrantedAuthority(accessEnum));
     }
 
     @Override
@@ -138,11 +137,6 @@ public abstract class ChurchWorker implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
     }
 
     @Override

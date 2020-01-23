@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class PriestModel extends ChurchWorker {
 
-    public PriestModel(String workerLogin, String workerPassword, String firstName, String lastName, AccessEnum accessEnum) {
+    public PriestModel(String workerLogin, String workerPassword, String firstName, String lastName, String accessEnum) {
         super(workerLogin, workerPassword, firstName, lastName, accessEnum);
     }
 

@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/show-all-church-worker").hasRole("Proboszcz")
+                .antMatchers("/show-all-church-worker").hasAuthority(AccessEnum.ADMIN.getAuthority())
                 .antMatchers("/show-sacristians").hasAnyRole("Proboszcz", "Kaplan")
                 .antMatchers("/show-priests").hasAnyRole("Proboszcz", "Zakrystianin")
                 .antMatchers("/show-intentions").hasAnyRole("Proboszcz", "Kaplan", "Zakrystianin")
