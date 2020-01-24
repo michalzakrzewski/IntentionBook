@@ -32,18 +32,6 @@ public class IntentionBookApplication {
     public IntentionBookApplication(BookOfIntentionRepository bookOfIntentionRepository, ChurchWorkerRepository churchWorkerRepository) {
         this.bookOfIntentionRepository = bookOfIntentionRepository;
         this.churchWorkerRepository = churchWorkerRepository;
-
-        System.out.println("Admin: " + AccessEnum.ADMIN);
-        System.out.println("Admin, get desc: " + AccessEnum.ADMIN.getRoleDescription());
-        System.out.println("Admin, name: " + AccessEnum.ADMIN.name());
-
-        System.out.println("=========================================");
-
-        System.out.println("Zakrystianin: " + AccessEnum.USER_ZAKRYS);
-        System.out.println("Zakrystianin, get desc: " + AccessEnum.USER_ZAKRYS.getRoleDescription());
-        System.out.println("Zakrystianin, name: " + AccessEnum.USER_ZAKRYS.name());
-        System.out.println("=========================================");
-        System.out.println(AccessEnum.USER_ZAKRYS.getAuthority());
     }
 
     @EventListener(ApplicationReadyEvent.class)
@@ -51,7 +39,7 @@ public class IntentionBookApplication {
 
         ChurchWorker priest1 = new PriestModel("priest1", passwordEncoder().encode("qwerty") , "Priest1", "Priest1", AccessEnum.USER_KAPLAN.getRoleDescription());
         ChurchWorker priest2 = new PriestModel("priest2", passwordEncoder().encode("qwerty"), "Priest2", "Priest2", AccessEnum.USER_KAPLAN.getRoleDescription());
-        ChurchWorker priest3 = new PriestModel("superpriest", passwordEncoder().encode("qwerty"),"SuperPriest1", "SuperPriest2", AccessEnum.ADMIN.name());
+        ChurchWorker priest3 = new PriestModel("superpriest", passwordEncoder().encode("qwerty"),"SuperPriest1", "SuperPriest2", AccessEnum.SUPER_USER.getRoleDescription());
         ChurchWorker sacristian1 = new SacristanModel("zakr1", passwordEncoder().encode("qwerty"), "Bogusław", "Pietras", AccessEnum.USER_ZAKRYS.getRoleDescription());
         ChurchWorker sacristian2 = new SacristanModel("zakr2", passwordEncoder().encode("qwerty"), "Ryszard", "Gosztyła", AccessEnum.USER_ZAKRYS.getRoleDescription());
         churchWorkerRepository.save(priest1);

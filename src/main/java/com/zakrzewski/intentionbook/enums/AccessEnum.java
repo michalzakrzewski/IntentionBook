@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 public enum AccessEnum implements GrantedAuthority {
 
-    ADMIN("ROLE_ADMIN"),
     SUPER_USER("Proboszcz"),
     USER_KAPLAN("Kaplan"),
     USER_ZAKRYS("Zakrystianin");
@@ -22,6 +21,6 @@ public enum AccessEnum implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return name();
+        return getRoleDescription();
     }
 }

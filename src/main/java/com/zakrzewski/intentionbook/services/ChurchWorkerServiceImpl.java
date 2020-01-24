@@ -6,6 +6,8 @@ import com.zakrzewski.intentionbook.repositories.ChurchWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,5 +35,16 @@ public class ChurchWorkerServiceImpl {
         List<ChurchWorker> workerList = churchWorkerRepository.findAll();
         workerList = workerList.stream().filter(priest -> priest.getAccessEnum().equals(AccessEnum.USER_KAPLAN)).collect(Collectors.toList());
         return workerList;
+    }
+
+    public List<String> getLimitedInfoPriest(){
+        List<ChurchWorker> workerList = churchWorkerRepository.findAll();
+        List<String> workerListInfo = new ArrayList<>();
+        for (ChurchWorker churchWorker : workerList){
+            workerListInfo.add(churchWorker.getFirstName());
+            workerListInfo.add(churchWorker.getLastName());
+            workerListInfo.add(churchWorker.getAccessEnum());
+        }
+        return workerListInfo;
     }
 }
