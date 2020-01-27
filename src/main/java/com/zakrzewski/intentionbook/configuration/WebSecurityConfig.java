@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/show-all-church-worker").hasAuthority(AccessEnum.SUPER_USER.getAuthority())
                 .antMatchers("/show-sacristians").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority())
-                .antMatchers("/show-priests").hasAnyRole("Proboszcz", "Zakrystianin")
+                .antMatchers("/show-priests").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
                 .antMatchers("/show-intentions").hasAnyRole("Proboszcz", "Kaplan", "Zakrystianin")
                 .antMatchers("/add-intention").hasAnyRole("Proboszcz", "Kaplan", "Zakrystianin")
                 .antMatchers("/xyz").permitAll()

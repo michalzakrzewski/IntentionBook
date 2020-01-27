@@ -34,9 +34,4 @@ public class ChurchWorkerConctroller {
         return churchWorkerService.getAllPriest();
     }
 
-    @RequestMapping(value = "/xyz", method = RequestMethod.GET)
-    public List<String> showLimitedPriests(){
-        return churchWorkerService.getLimitedInfoPriest();
-    }
-
 }

@@ -1,6 +1,7 @@
 package com.zakrzewski.intentionbook.services;
 
 import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
+import com.zakrzewski.intentionbook.entities.PriestModel;
 import com.zakrzewski.intentionbook.enums.AccessEnum;
 import com.zakrzewski.intentionbook.repositories.ChurchWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,24 +28,13 @@ public class ChurchWorkerServiceImpl {
 
     public List<ChurchWorker> getAllSacristian(){
         List<ChurchWorker> workerList = churchWorkerRepository.findAll();
-        workerList =  workerList.stream().filter(sacristian -> sacristian.getAccessEnum().equals(AccessEnum.USER_ZAKRYS)).collect(Collectors.toList());
+        workerList =  workerList.stream().filter(sacristian -> sacristian.getAccessEnum().equals(AccessEnum.USER_ZAKRYS.getRoleDescription())).collect(Collectors.toList());
         return workerList;
     }
 
     public List<ChurchWorker> getAllPriest(){
         List<ChurchWorker> workerList = churchWorkerRepository.findAll();
-        workerList = workerList.stream().filter(priest -> priest.getAccessEnum().equals(AccessEnum.USER_KAPLAN)).collect(Collectors.toList());
+        workerList = workerList.stream().filter(priest -> priest.getAccessEnum().equals(AccessEnum.USER_KAPLAN.getRoleDescription())).collect(Collectors.toList());
         return workerList;
-    }
-
-    public List<String> getLimitedInfoPriest(){
-        List<ChurchWorker> workerList = churchWorkerRepository.findAll();
-        List<String> workerListInfo = new ArrayList<>();
-        for (ChurchWorker churchWorker : workerList){
-            workerListInfo.add(churchWorker.getFirstName());
-            workerListInfo.add(churchWorker.getLastName());
-            workerListInfo.add(churchWorker.getAccessEnum());
-        }
-        return workerListInfo;
     }
 }

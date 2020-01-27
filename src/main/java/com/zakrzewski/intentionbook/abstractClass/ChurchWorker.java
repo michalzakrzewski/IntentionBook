@@ -2,6 +2,8 @@ package com.zakrzewski.intentionbook.abstractClass;
 
 import com.zakrzewski.intentionbook.enums.AccessEnum;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,7 +43,7 @@ public abstract class ChurchWorker implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
 
-    //@Enumerated(EnumType.STRING)
+
     @Column(name = "user_role")
     private String accessEnum;
 
@@ -71,6 +73,7 @@ public abstract class ChurchWorker implements UserDetails {
     public void setWorkerLogin(String workerLogin) {
         this.workerLogin = workerLogin;
     }
+
 
     public String getWorkerPassword() {
         return workerPassword;
