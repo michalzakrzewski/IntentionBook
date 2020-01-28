@@ -23,6 +23,11 @@ public class BookOfIntentionController {
         return bookOfIntentionModelList;
     }
 
+    @RequestMapping(value = "/show-one-intention/{id}", method = RequestMethod.GET)
+    public BookOfIntentionModel getOneIntention(@PathVariable Long id){
+        return bookOfIntentionsService.getOneIntentionById(id);
+    }
+
     @RequestMapping(value = "/add-intention", method = RequestMethod.POST)
     public void addNewIntention(@RequestBody BookOfIntentionModel bookOfIntentionModel){
         bookOfIntentionsService.addNewIntention(bookOfIntentionModel);
@@ -30,7 +35,7 @@ public class BookOfIntentionController {
 
     @RequestMapping(value = "/edit-intention/{id}", method = RequestMethod.PUT)
     public void editIntention(@PathVariable Long id, @RequestBody BookOfIntentionModel bookOfIntentionModel){
-        bookOfIntentionsService.editIntention(bookOfIntentionModel);
+        bookOfIntentionsService.editIntention(id, bookOfIntentionModel);
     }
 
     @RequestMapping(value = "/delete-intention/{id}", method = RequestMethod.DELETE)

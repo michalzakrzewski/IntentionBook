@@ -2,10 +2,10 @@ package com.zakrzewski.intentionbook.controllers;
 
 import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
 import com.zakrzewski.intentionbook.services.ChurchWorkerServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,6 +13,8 @@ import java.util.List;
 public class ChurchWorkerConctroller {
 
     private ChurchWorkerServiceImpl churchWorkerService;
+
+    private Logger logger = LoggerFactory.getLogger(ChurchWorkerConctroller.class);
 
     @Autowired
     public ChurchWorkerConctroller(ChurchWorkerServiceImpl churchWorkerService) {
@@ -32,6 +34,16 @@ public class ChurchWorkerConctroller {
     @RequestMapping(value = "/show-priests", method = RequestMethod.GET)
     public List<ChurchWorker> showPriests(){
         return churchWorkerService.getAllPriest();
+    }
+
+    @RequestMapping(value = "/add-new-worker", method = RequestMethod.POST)
+    public ChurchWorker addNewWorker(@RequestBody ChurchWorker churchWorker){
+        return churchWorkerService.addNewChurchWorker(churchWorker);
+    }
+
+    @RequestMapping(value = "/delete-worker/{id}", method = RequestMethod.DELETE)
+    public void deleteWorker(@PathVariable Long id){
+        churchWorkerService.deleteChurchWorker(id);
     }
 
 }

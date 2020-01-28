@@ -5,6 +5,7 @@ import com.zakrzewski.intentionbook.entities.PriestModel;
 import com.zakrzewski.intentionbook.enums.AccessEnum;
 import com.zakrzewski.intentionbook.repositories.ChurchWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,5 +37,14 @@ public class ChurchWorkerServiceImpl {
         List<ChurchWorker> workerList = churchWorkerRepository.findAll();
         workerList = workerList.stream().filter(priest -> priest.getAccessEnum().equals(AccessEnum.USER_KAPLAN.getRoleDescription())).collect(Collectors.toList());
         return workerList;
+    }
+
+    public ChurchWorker addNewChurchWorker(ChurchWorker churchWorker){
+        churchWorker.setWorkerPassword(new BCryptPasswordEncoder().encode(churchWorker.getWorkerPassword()));
+        return churchWorkerRepository.save(churchWorker);
+    }
+
+    public void deleteChurchWorker(Long id){
+        churchWorkerRepository.deleteById(id);
     }
 }

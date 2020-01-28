@@ -16,7 +16,6 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.Access;
 
 @SpringBootApplication
 public class IntentionBookApplication {

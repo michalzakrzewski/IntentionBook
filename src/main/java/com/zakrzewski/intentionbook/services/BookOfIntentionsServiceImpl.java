@@ -22,15 +22,28 @@ public class BookOfIntentionsServiceImpl {
     }
 
     public BookOfIntentionModel getOneIntentionById(Long id){
-        return bookOfIntentionRepository.getOne(id);
+        return bookOfIntentionRepository.findById(id).orElseThrow(() -> new RuntimeException("Intention does not exist"));
     }
 
     public void addNewIntention(BookOfIntentionModel bookOfIntentionModel){
         bookOfIntentionRepository.save(bookOfIntentionModel);
     }
 
-    public void editIntention(BookOfIntentionModel bookOfIntentionModel){
-        bookOfIntentionRepository.save(bookOfIntentionModel);
+    public void editIntention(Long id, BookOfIntentionModel bookOfIntentionModel){
+        bookOfIntentionRepository.findById(id)
+                .map(element -> {
+                    element.setDateOfMass(bookOfIntentionModel.getDateOfMass());
+                    element.setTimeOfMass(bookOfIntentionModel.getTimeOfMass());
+                    element.setDescriptionOfIntention(bookOfIntentionModel.getDescriptionOfIntention());
+                    element.setWhichPriest(bookOfIntentionModel.getWhichPriest());
+                    element.setOthersAttention(bookOfIntentionModel.getOthersAttention());
+                    element.setPayment(bookOfIntentionModel.getPayment());
+                    element.setWhoAddIntention(bookOfIntentionModel.getWhoAddIntention());
+                    return bookOfIntentionRepository.save(element);
+                }).orElseGet(() -> {
+                    bookOfIntentionModel.setId(id);
+                    return bookOfIntentionRepository.save(bookOfIntentionModel);
+        });
     }
 
     public void deleteIntentionById(Long id){
