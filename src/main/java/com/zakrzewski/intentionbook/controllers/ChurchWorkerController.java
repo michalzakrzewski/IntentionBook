@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ChurchWorkerConctroller {
+public class ChurchWorkerController {
 
     private ChurchWorkerServiceImpl churchWorkerService;
 
-    private Logger logger = LoggerFactory.getLogger(ChurchWorkerConctroller.class);
+    private Logger logger = LoggerFactory.getLogger(ChurchWorkerController.class);
 
     @Autowired
-    public ChurchWorkerConctroller(ChurchWorkerServiceImpl churchWorkerService) {
+    public ChurchWorkerController(ChurchWorkerServiceImpl churchWorkerService) {
         this.churchWorkerService = churchWorkerService;
     }
 
