@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.Access;
 
 @SpringBootApplication
 public class IntentionBookApplication {
@@ -34,11 +36,11 @@ public class IntentionBookApplication {
     @EventListener(ApplicationReadyEvent.class)
     public void createFinalTemplate() {
 
-        ChurchWorker priest1 = new PriestModel("Priest1", "Priest2", AccessEnum.USER_KAPLAN);
-        ChurchWorker priest2 = new PriestModel("Priest2", "Priest2", AccessEnum.USER_KAPLAN);
-        ChurchWorker priest3 = new PriestModel("SuperPriest1", "SuperPriest2", AccessEnum.SUPER_USER);
-        ChurchWorker sacristian1 = new SacristanModel("Bogusław", "Pietras", AccessEnum.USER_ZAKRYS);
-        ChurchWorker sacristian2 = new SacristanModel("Ryszard", "Gosztyła", AccessEnum.USER_ZAKRYS);
+        ChurchWorker priest1 = new PriestModel("priest1", passwordEncoder().encode("qwerty") , "Priest1", "Priest1", AccessEnum.USER_KAPLAN.getRoleDescription());
+        ChurchWorker priest2 = new PriestModel("priest2", passwordEncoder().encode("qwerty"), "Priest2", "Priest2", AccessEnum.USER_KAPLAN.getRoleDescription());
+        ChurchWorker priest3 = new PriestModel("superpriest", passwordEncoder().encode("qwerty"),"SuperPriest1", "SuperPriest2", AccessEnum.SUPER_USER.getRoleDescription());
+        ChurchWorker sacristian1 = new SacristanModel("zakr1", passwordEncoder().encode("qwerty"), "Bogusław", "Pietras", AccessEnum.USER_ZAKRYS.getRoleDescription());
+        ChurchWorker sacristian2 = new SacristanModel("zakr2", passwordEncoder().encode("qwerty"), "Ryszard", "Gosztyła", AccessEnum.USER_ZAKRYS.getRoleDescription());
         churchWorkerRepository.save(priest1);
         churchWorkerRepository.save(priest2);
         churchWorkerRepository.save(priest3);
@@ -53,6 +55,11 @@ public class IntentionBookApplication {
         bookOfIntentionRepository.save(intentionModel2);
         bookOfIntentionRepository.save(intentionModel3);
         bookOfIntentionRepository.save(intentionModel4);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }

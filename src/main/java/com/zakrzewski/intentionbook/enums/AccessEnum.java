@@ -1,11 +1,12 @@
 package com.zakrzewski.intentionbook.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.security.core.GrantedAuthority;
 
-public enum AccessEnum {
+public enum AccessEnum implements GrantedAuthority {
 
     SUPER_USER("Proboszcz"),
-    USER_KAPLAN("Kapłan"),
+    USER_KAPLAN("Kaplan"),
     USER_ZAKRYS("Zakrystianin");
 
     private String roleDescription;
@@ -16,5 +17,10 @@ public enum AccessEnum {
 
     public String getRoleDescription() {
         return roleDescription;
+    }
+
+    @Override
+    public String getAuthority() {
+        return getRoleDescription();
     }
 }
