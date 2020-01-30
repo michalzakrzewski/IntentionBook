@@ -5,11 +5,13 @@ import com.zakrzewski.intentionbook.services.ChurchWorkerServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ChurchWorkerController {
 
     private ChurchWorkerServiceImpl churchWorkerService;
@@ -20,6 +22,13 @@ public class ChurchWorkerController {
     public ChurchWorkerController(ChurchWorkerServiceImpl churchWorkerService) {
         this.churchWorkerService = churchWorkerService;
     }
+
+    /*@RequestMapping(value = "/", method = RequestMethod.GET)
+    public String showHomePage(Model model){
+        List<ChurchWorker> churchWorkersList = churchWorkerService.getAllChurchWorker();
+        model.addAttribute("churchWorker", churchWorkersList);
+        return "workers";
+    }*/
 
     @RequestMapping(value = "/show-all-church-worker", method = RequestMethod.GET)
     public List<ChurchWorker> showAllChurchWorkers(){

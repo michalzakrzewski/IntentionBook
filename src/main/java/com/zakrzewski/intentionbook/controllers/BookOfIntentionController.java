@@ -1,26 +1,40 @@
 package com.zakrzewski.intentionbook.controllers;
 
+import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
 import com.zakrzewski.intentionbook.entities.BookOfIntentionModel;
+import com.zakrzewski.intentionbook.enums.AccessEnum;
 import com.zakrzewski.intentionbook.services.BookOfIntentionsServiceImpl;
+import com.zakrzewski.intentionbook.services.ChurchWorkerDetailsServiceImpl;
+import com.zakrzewski.intentionbook.services.ChurchWorkerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@RestController
+@Controller
 public class BookOfIntentionController {
 
     private BookOfIntentionsServiceImpl bookOfIntentionsService;
+    private ChurchWorkerServiceImpl churchWorkerDetailsService;
 
     @Autowired
-    public BookOfIntentionController(BookOfIntentionsServiceImpl bookOfIntentionsService) {
+    public BookOfIntentionController(BookOfIntentionsServiceImpl bookOfIntentionsService, ChurchWorkerServiceImpl churchWorkerDetailsService) {
         this.bookOfIntentionsService = bookOfIntentionsService;
+        this.churchWorkerDetailsService = churchWorkerDetailsService;
     }
 
     @RequestMapping(value = "/show-intentions", method = RequestMethod.GET)
-    public List<BookOfIntentionModel> getAllIntentions(){
+    public String getAllIntentions(Model model){
         List<BookOfIntentionModel> bookOfIntentionModelList = bookOfIntentionsService.getAllIntentions();
-        return bookOfIntentionModelList;
+        model.addAttribute("intention", bookOfIntentionModelList);
+
+        List<ChurchWorker> churchWorkers = churchWorkerDetailsService.getAllChurchWorker();
+        churchWorkers = churchWorkers.stream().filter(churchWorker -> churchWorker.equals(AccessEnum.USER_KAPLAN.getAuthority())).collect(Collectors.toList());
+        model.addAttribute("whichPriest", churchWorkers);
+        return "index";
     }
 
     @RequestMapping(value = "/show-one-intention/{id}", method = RequestMethod.GET)
@@ -29,8 +43,9 @@ public class BookOfIntentionController {
     }
 
     @RequestMapping(value = "/add-intention", method = RequestMethod.POST)
-    public void addNewIntention(@RequestBody BookOfIntentionModel bookOfIntentionModel){
+    public String addNewIntention(@ModelAttribute BookOfIntentionModel bookOfIntentionModel){
         bookOfIntentionsService.addNewIntention(bookOfIntentionModel);
+        return "index";
     }
 
     @RequestMapping(value = "/edit-intention/{id}", method = RequestMethod.PUT)
