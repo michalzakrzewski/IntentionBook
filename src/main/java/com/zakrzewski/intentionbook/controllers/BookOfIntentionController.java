@@ -30,9 +30,9 @@ public class BookOfIntentionController {
     public String getAllIntentions(Model model){
         List<BookOfIntentionModel> bookOfIntentionModelList = bookOfIntentionsService.getAllIntentions();
         model.addAttribute("intention", bookOfIntentionModelList);
+        model.addAttribute("newIntention", new BookOfIntentionModel());
 
-        List<ChurchWorker> churchWorkers = churchWorkerDetailsService.getAllChurchWorker();
-        churchWorkers = churchWorkers.stream().filter(churchWorker -> churchWorker.equals(AccessEnum.USER_KAPLAN.getAuthority())).collect(Collectors.toList());
+        List<ChurchWorker> churchWorkers = churchWorkerDetailsService.getAllPriest();
         model.addAttribute("whichPriest", churchWorkers);
         return "index";
     }
@@ -45,7 +45,7 @@ public class BookOfIntentionController {
     @RequestMapping(value = "/add-intention", method = RequestMethod.POST)
     public String addNewIntention(@ModelAttribute BookOfIntentionModel bookOfIntentionModel){
         bookOfIntentionsService.addNewIntention(bookOfIntentionModel);
-        return "index";
+        return "redirect:/show-intentions";
     }
 
     @RequestMapping(value = "/edit-intention/{id}", method = RequestMethod.PUT)

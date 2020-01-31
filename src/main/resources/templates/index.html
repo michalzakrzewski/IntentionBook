@@ -32,24 +32,30 @@
 </div>
 
 <div class="myForm">
-    <form th:action="@{/add-intention}" method="post">
-        <div class="form-group">
+    <form th:action="@{/add-intention}" method="post" th:object="${newIntention}">
+        <div class="form-group col-lg-3">
             <label for="dateOfMass">Data Mszy Świętej:</label>
-            <input type="text" class="form-control" id="dateOfMass" placeholder="Wprowadź datę(dd:mm:rr)">
+            <input type="text" class="form-control" th:field="*{dateOfMass}" id="dateOfMass" placeholder="Wprowadź datę(dd:mm:rr)">
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-3">
             <label for="timeOfMass">Godzina Mszy Świętej: </label>
-            <input type="text" class="form-control" id="timeOfMass" placeholder="Wprowadź godzinę(gg:mm)">
+            <input type="text" class="form-control" th:field="*{timeOfMass}"  id="timeOfMass" placeholder="Wprowadź godzinę(gg:mm)">
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-3">
             <label for="intentionMass">Intencja</label>
-            <input type="text" class="form-control" id="intentionMass" placeholder="Wprowadź intencję">
+            <input type="text" class="form-control" th:field="*{descriptionOfIntention}"  id="intentionMass" placeholder="Wprowadź intencję">
         </div>
-        <div class="form-group">
-            <label for="priestOfMass">Celebrans</label>
-            <input type="text" class="form-control" id="priestOfMass" placeholder="Wprowadź celebransa">
+        <div class="form-group col-lg-3">
+            <label>Celebrans</label>
+            <select class="form-control" th:field="*{whichPriest}"  id="churchPriest" name="churchPriest">
+                <option th:each="priest : ${whichPriest}"
+                        th:value="${priest.id}"
+                        th:text="${priest.firstName} + ' ' +${priest.lastName}"></option>
+            </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group col-lg-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </div>
 
