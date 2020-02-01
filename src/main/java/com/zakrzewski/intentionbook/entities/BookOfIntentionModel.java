@@ -45,15 +45,6 @@ public class BookOfIntentionModel {
     public BookOfIntentionModel() {
     }
 
-    public BookOfIntentionModel(String dateOfMass, String timeOfMass, String descriptionOfIntention, String whichPriest) {
-        this.dateOfMass = dateOfMass;
-        this.timeOfMass = timeOfMass;
-        this.descriptionOfIntention = descriptionOfIntention;
-        this.whichPriest = whichPriest;
-        this.othersAttention="";
-        this.payment="";
-        this.whoAddIntention = null;
-    }
 
     public BookOfIntentionModel(String dateOfMass, String timeOfMass, String descriptionOfIntention, String whichPriest, String othersAttention, String payment, ChurchWorker whoAddIntention) {
         this.dateOfMass = dateOfMass;

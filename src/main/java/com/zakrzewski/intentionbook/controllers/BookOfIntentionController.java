@@ -2,6 +2,7 @@ package com.zakrzewski.intentionbook.controllers;
 
 import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
 import com.zakrzewski.intentionbook.entities.BookOfIntentionModel;
+import com.zakrzewski.intentionbook.entities.PriestModel;
 import com.zakrzewski.intentionbook.enums.AccessEnum;
 import com.zakrzewski.intentionbook.services.BookOfIntentionsServiceImpl;
 import com.zakrzewski.intentionbook.services.ChurchWorkerDetailsServiceImpl;
@@ -32,8 +33,11 @@ public class BookOfIntentionController {
         model.addAttribute("intention", bookOfIntentionModelList);
         model.addAttribute("newIntention", new BookOfIntentionModel());
 
-        List<ChurchWorker> churchWorkers = churchWorkerDetailsService.getAllPriest();
-        model.addAttribute("whichPriest", churchWorkers);
+        List<ChurchWorker> churchPriest = churchWorkerDetailsService.getAllPriest();
+        model.addAttribute("whichPriest", churchPriest);
+
+        List<ChurchWorker> allChurchWorkers = churchWorkerDetailsService.getAllChurchWorker();
+        model.addAttribute("whoAddIntention", allChurchWorkers);
         return "index";
     }
 
