@@ -26,7 +26,7 @@
             <td th:text="${ourIntention.getTimeOfMass()}"/>
             <td th:text="${ourIntention.getDescriptionOfIntention()}"/>
             <td th:text="${ourIntention.getWhichPriest()}"/>
-            <td th:text="${ourIntention.getWhoAddIntention().toString()}"/>
+            <td th:text="${ourIntention.getWhoAddIntention().getFullName()}"/>
         </tr>
         </tbody>
     </table>
@@ -51,7 +51,7 @@
             <label>Celebrans</label>
             <select class="form-control" th:field="*{whichPriest}"  id="churchPriest" name="churchPriest">
                 <option th:each="priest : ${whichPriest}"
-                        th:value="${priest.id}"
+                        th:value="${priest.fullName}"
                         th:text="${priest.firstName} + ' ' +${priest.lastName}"></option>
             </select>
         </div>
@@ -65,10 +65,10 @@
         </div>
         <div class="form-group col-lg-3">
             <label>Kto dodał intencję</label>
-            <select class="form-control" th:field="*{whoAddIntention}"  id="allChurchWorkers" name="allChurchWorkers">
+            <select class="form-control" th:field="*{whoAddIntention}"  id="whoAddIntention" name="whoAddIntention">
                 <option th:each="worker : ${whoAddIntention}"
                         th:value="${worker.id}"
-                        th:text="${worker.firstName} + ' ' +${worker.lastName}"></option>
+                        th:text="${worker.fullName}"></option>
             </select>
         </div>
         <div class="form-group col-lg-3">

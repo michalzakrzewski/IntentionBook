@@ -47,15 +47,22 @@ public abstract class ChurchWorker implements UserDetails {
     @Column(name = "user_role")
     private String accessEnum;
 
+    private String fullNameWorkers;
+
     public ChurchWorker(String workerLogin, String workerPassword, String firstName, String lastName, String accessEnum) {
         this.workerLogin = workerLogin;
         this.workerPassword = workerPassword;
         this.firstName = firstName;
         this.lastName = lastName;
         this.accessEnum = accessEnum;
+        this.fullNameWorkers = concatName();
     }
 
     public ChurchWorker() {
+    }
+
+    private String concatName(){
+        return this.getFirstName() + " " + this.getLastName();
     }
 
     public Long getId() {
@@ -105,6 +112,14 @@ public abstract class ChurchWorker implements UserDetails {
 
     public void setAccessEnum(String accessEnum) {
         this.accessEnum = accessEnum;
+    }
+
+    public String getFullName() {
+        return fullNameWorkers;
+    }
+
+    public void setFullName(String fullNameWorkers) {
+        this.fullNameWorkers = fullNameWorkers;
     }
 
     @Override

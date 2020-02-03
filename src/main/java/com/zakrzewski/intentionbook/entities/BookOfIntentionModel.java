@@ -3,6 +3,7 @@ package com.zakrzewski.intentionbook.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
+import org.hibernate.annotations.common.reflection.XMethod;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,6 +43,9 @@ public class BookOfIntentionModel {
     @JoinColumn(name = "church_worker_id", nullable = false)
     private ChurchWorker whoAddIntention;
 
+    @Transient
+    private String fullName;
+
     public BookOfIntentionModel() {
     }
 
@@ -54,7 +58,13 @@ public class BookOfIntentionModel {
         this.othersAttention = othersAttention;
         this.payment = payment;
         this.whoAddIntention = whoAddIntention;
+        this.fullName = getConcatFullName();
     }
+
+    private String getConcatFullName(){
+        return this.whoAddIntention.getFirstName() + " " + this.whoAddIntention.getLastName();
+    }
+
 
     public Long getId() {
         return id;
@@ -110,6 +120,14 @@ public class BookOfIntentionModel {
 
     public void setWhoAddIntention(ChurchWorker whoAddIntention) {
         this.whoAddIntention = whoAddIntention;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     @JsonIgnore
