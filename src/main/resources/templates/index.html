@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="PL" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Księga Intencji</title>
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Data Mszy Świętej</th>
+            <th>Godzine Mszy Świętej</th>
+            <th>Intencja</th>
+            <th>Celebrans</th>
+            <th>Intencję przyjął</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ourIntention : ${intention}">
+            <td th:text="${ourIntention.getDateOfMass()}"/>
+            <td th:text="${ourIntention.getTimeOfMass()}"/>
+            <td th:text="${ourIntention.getDescriptionOfIntention()}"/>
+            <td th:text="${ourIntention.getWhichPriest()}"/>
+            <td th:text="${ourIntention.getWhoAddIntention().getFullName()}"/>
+        </tr>
+        </tbody>
+    </table>
+    </hr>
+</div>
+
+<div class="myForm">
+    <form th:action="@{/add-intention}" method="post" th:object="${newIntention}">
+        <div class="form-group col-lg-3">
+            <label for="dateOfMass">Data Mszy Świętej:</label>
+            <input type="text" class="form-control" th:field="*{dateOfMass}" id="dateOfMass" placeholder="Wprowadź datę(dd:mm:rr)">
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="timeOfMass">Godzina Mszy Świętej: </label>
+            <input type="text" class="form-control" th:field="*{timeOfMass}"  id="timeOfMass" placeholder="Wprowadź godzinę(gg:mm)">
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="intentionMass">Intencja</label>
+            <input type="text" class="form-control" th:field="*{descriptionOfIntention}"  id="intentionMass" placeholder="Wprowadź intencję">
+        </div>
+        <div class="form-group col-lg-3">
+            <label>Celebrans</label>
+            <select class="form-control" th:field="*{whichPriest}"  id="churchPriest" name="churchPriest">
+                <option th:each="priest : ${whichPriest}"
+                        th:value="${priest.fullName}"
+                        th:text="${priest.firstName} + ' ' +${priest.lastName}"></option>
+            </select>
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="intentionMass">Uwagi</label>
+            <input type="text" class="form-control" th:field="*{othersAttention}"  id="othersComments" placeholder="Wprowadź uwagi">
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="intentionMass">Złożona ofiara</label>
+            <input type="text" class="form-control" th:field="*{payment}"  id="paymentIntention" placeholder="Wprowadź ofiarę">
+        </div>
+        <div class="form-group col-lg-3">
+            <label>Kto dodał intencję</label>
+            <select class="form-control" th:field="*{whoAddIntention}"  id="whoAddIntention" name="whoAddIntention">
+                <option th:each="worker : ${whoAddIntention}"
+                        th:value="${worker.id}"
+                        th:text="${worker.fullName}"></option>
+            </select>
+        </div>
+        <div class="form-group col-lg-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
