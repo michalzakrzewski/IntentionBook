@@ -3,7 +3,6 @@ package com.zakrzewski.intentionbook.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
-import org.hibernate.annotations.common.reflection.XMethod;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,7 +33,7 @@ public class BookOfIntentionModel {
 
     @Column(name = "others_attention")
     private String othersAttention;
-    
+
     @Size(min = 2, max = 50)
     @Column(name = "payment")
     private String payment;
@@ -61,7 +60,7 @@ public class BookOfIntentionModel {
         this.fullName = getConcatFullName();
     }
 
-    private String getConcatFullName(){
+    private String getConcatFullName() {
         return this.whoAddIntention.getFirstName() + " " + this.whoAddIntention.getLastName();
     }
 
@@ -134,6 +133,7 @@ public class BookOfIntentionModel {
     public String getPayment() {
         return payment;
     }
+
     @JsonSetter
     public void setPayment(String payment) {
         this.payment = payment;

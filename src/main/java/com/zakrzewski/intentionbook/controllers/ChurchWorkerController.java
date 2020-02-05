@@ -23,16 +23,12 @@ public class ChurchWorkerController {
         this.churchWorkerService = churchWorkerService;
     }
 
-    /*@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String showHomePage(Model model){
+
+    @RequestMapping(value = "/show-all-workers", method = RequestMethod.GET)
+    public String showAllChurchWorkers(Model model){
         List<ChurchWorker> churchWorkersList = churchWorkerService.getAllChurchWorker();
         model.addAttribute("churchWorker", churchWorkersList);
-        return "workers";
-    }*/
-
-    @RequestMapping(value = "/show-all-church-worker", method = RequestMethod.GET)
-    public List<ChurchWorker> showAllChurchWorkers(){
-        return churchWorkerService.getAllChurchWorker();
+        return "show-all-workers";
     }
 
     @RequestMapping(value = "/show-sacristians", method = RequestMethod.GET)
