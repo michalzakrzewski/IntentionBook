@@ -3,10 +3,13 @@ package com.zakrzewski.intentionbook.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "book_of_intention")
@@ -16,11 +19,12 @@ public class BookOfIntentionModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_mass")
-    private String dateOfMass;
+    private LocalDate dateOfMass;
 
     @Column(name = "time_of_mass")
-    private String timeOfMass;
+    private LocalTime timeOfMass;
 
     @NotNull
     @Size(min = 2, max = 50)
@@ -49,7 +53,7 @@ public class BookOfIntentionModel {
     }
 
 
-    public BookOfIntentionModel(String dateOfMass, String timeOfMass, String descriptionOfIntention, String whichPriest, String othersAttention, String payment, ChurchWorker whoAddIntention) {
+    public BookOfIntentionModel(LocalDate dateOfMass, LocalTime timeOfMass, String descriptionOfIntention, String whichPriest, String othersAttention, String payment, ChurchWorker whoAddIntention) {
         this.dateOfMass = dateOfMass;
         this.timeOfMass = timeOfMass;
         this.descriptionOfIntention = descriptionOfIntention;
@@ -73,19 +77,19 @@ public class BookOfIntentionModel {
         this.id = id;
     }
 
-    public String getDateOfMass() {
+    public LocalDate getDateOfMass() {
         return dateOfMass;
     }
 
-    public void setDateOfMass(String dateOfMass) {
+    public void setDateOfMass(LocalDate dateOfMass) {
         this.dateOfMass = dateOfMass;
     }
 
-    public String getTimeOfMass() {
+    public LocalTime getTimeOfMass() {
         return timeOfMass;
     }
 
-    public void setTimeOfMass(String timeOfMass) {
+    public void setTimeOfMass(LocalTime timeOfMass) {
         this.timeOfMass = timeOfMass;
     }
 
