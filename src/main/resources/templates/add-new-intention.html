@@ -26,11 +26,11 @@
     <form th:action="@{/add-intention}" method="post" th:object="${newIntention}">
         <div class="form-group col-lg-3">
             <label for="dateOfMass">Data Mszy Świętej:</label>
-            <input type="text" class="form-control" th:field="*{dateOfMass}" id="dateOfMass" placeholder="Wprowadź datę(dd:mm:rr)">
+            <input type="date" class="form-control" th:field="*{dateOfMass}" th:value="*{dateOfMass}" id="dateOfMass" placeholder="Wprowadź datę">
         </div>
         <div class="form-group col-lg-3">
             <label for="timeOfMass">Godzina Mszy Świętej: </label>
-            <input type="text" class="form-control" th:field="*{timeOfMass}"  id="timeOfMass" placeholder="Wprowadź godzinę(gg:mm)">
+            <input type="time" class="form-control" th:field="*{timeOfMass}"  id="timeOfMass" placeholder="Wprowadź godzinę">
         </div>
         <div class="form-group col-lg-3">
             <label for="intentionMass">Intencja</label>
