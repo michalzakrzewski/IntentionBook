@@ -25,7 +25,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
+        http.formLogin()
+                .loginPage("/login.html")
+                .failureUrl("/login-error.html")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/test.html");
+        /*http.httpBasic()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/show-all-church-worker").hasAuthority(AccessEnum.SUPER_USER.getAuthority())
@@ -39,6 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().permitAll()
                 .and()
-                .csrf().disable();
+                .csrf().disable();*/
     }
 }
