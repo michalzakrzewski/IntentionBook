@@ -25,19 +25,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
+        http.formLogin()
+                .loginPage("/login").permitAll()
+                .failureUrl("/login-error")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/show-all-church-worker").hasAuthority(AccessEnum.SUPER_USER.getAuthority())
-                .antMatchers("/show-sacristians").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority())
-                .antMatchers("/show-priests").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
-                .antMatchers("/show-intentions").permitAll()//hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
-                .antMatchers("/add-intention").permitAll()//.hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
-                .antMatchers("/show-one-intention/{id}").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
-                .antMatchers("/edit-intention/{id}").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority())
-                .antMatchers("/delete-intention/{id}").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority())
+                .antMatchers("/").permitAll()
+                .antMatchers("/add-new-intention").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
+                .antMatchers("/show-all-workers").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority())
                 .and()
-                .formLogin().permitAll()
+                .httpBasic()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
                 .and()
                 .csrf().disable();
     }
