@@ -35,7 +35,7 @@ public class IntentionBookApplication {
         this.bookOfIntentionRepository = bookOfIntentionRepository;
         this.churchWorkerRepository = churchWorkerRepository;
     }
-
+/*
     @EventListener(ApplicationReadyEvent.class)
     public void createFinalTemplate() {
 
@@ -58,7 +58,7 @@ public class IntentionBookApplication {
         bookOfIntentionRepository.save(intentionModel2);
         bookOfIntentionRepository.save(intentionModel3);
         bookOfIntentionRepository.save(intentionModel4);
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder(){

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--<html lang="PL" xmlns:th="http://www.thymleaf.org" xmlns:sec="http://www.springframework.org/security/tags">-->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
@@ -14,6 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
+        <span sec:authorize="isAuthenticated()" style="color: #ffffff;" th:inline="text">Witaj, [[${#httpServletRequest.getUserPrincipal().getName()}]]!</span>
         <li class="nav-item">
             <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{add-new-intention}">Dodaj intencję</a>
         </li>

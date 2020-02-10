@@ -1,5 +1,6 @@
 package com.zakrzewski.intentionbook.services;
 
+import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
 import com.zakrzewski.intentionbook.repositories.ChurchWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +20,11 @@ public class ChurchWorkerDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return churchWorkerRepository.findByWorkerLogin(s);
+        ChurchWorker user = churchWorkerRepository.findByWorkerLogin(s);
+        if (user == null){
+            throw new UsernameNotFoundException("Username not found");
+        }else {
+            return churchWorkerRepository.findByWorkerLogin(s);
+        }
     }
 }

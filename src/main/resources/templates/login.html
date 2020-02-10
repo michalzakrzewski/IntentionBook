@@ -10,15 +10,19 @@
     <title>Zaloguj się</title>
 </head>
 <body>
-<p th:if="${loginError}" class="error">Podano złe hasło lub nazwę</p>
 <div class="login-form">
+    <div th:if="${loginError}">
+        <div class="alert alert-danger">
+            Podaną złą nazwę lub hasło. Spróbuj ponownie!
+        </div>
+    </div>
     <form th:action="@{login}" method="post">
         <h2 class="text-center">Zaloguj się</h2>
         <div class="form-group">
-            <input type="text" class="form-control" id="username" name="username" autofocus="autofocus" placeholder="Username" required="required">
+            <input type="text" class="form-control" id="username" name="username" autofocus="autofocus" placeholder="Nazwa użytkownika" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Hasło" required="required">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
