@@ -29,6 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .failureUrl("/login-error")
                 .and()
+                .exceptionHandling().accessDeniedPage("/access-forbidden")
+                .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/add-new-intention").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
