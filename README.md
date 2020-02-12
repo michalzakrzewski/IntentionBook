@@ -21,7 +21,7 @@ Aplikacja posiada kilku użytkowników z czego każdy posiada swoją rolę:
 
 Proboszcz jako Admin posiada dostęp do:
 * http://localhost:8080/show-all-workers - wyświetlenie pełnych informacji na temat użytkowników
-![Widok informacji](C:\Users\Michal\Pictures\IntentionBook_Images\showall)
+![Widok informacji](C:\Users\Michal\Pictures\IntentionBook_Images\showall.png)
 * localhost:8080/api/get/user/{id} - wyświetlenie konkretnego użytkownika, gdzie id to identyfikator uzytkownika (1, 2, 3,...., n)
 * localhost:8080/api/add-user - możliwość dodania użytkownika
 * localhost:8080/api/edit-user/{id} - edycja użytkownika, gdzie id to identyfikator uzytkownika (1, 2, 3,...., n)
