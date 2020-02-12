@@ -35,8 +35,8 @@ public class IntentionBookApplication {
         this.bookOfIntentionRepository = bookOfIntentionRepository;
         this.churchWorkerRepository = churchWorkerRepository;
     }
-/*
-    @EventListener(ApplicationReadyEvent.class)
+
+    /*@EventListener(ApplicationReadyEvent.class)
     public void createFinalTemplate() {
 
         ChurchWorker priest1 = new PriestModel("priest1", passwordEncoder().encode("qwerty") , "Damian", "Kosz", AccessEnum.USER_KAPLAN.getRoleDescription());
@@ -44,11 +44,15 @@ public class IntentionBookApplication {
         ChurchWorker priest3 = new PriestModel("superpriest", passwordEncoder().encode("qwerty"),"Grzegorz", "Sikora", AccessEnum.SUPER_USER.getRoleDescription());
         ChurchWorker sacristian1 = new SacristanModel("zakr1", passwordEncoder().encode("qwerty"), "Bogusław", "Pietras", AccessEnum.USER_ZAKRYS.getRoleDescription());
         ChurchWorker sacristian2 = new SacristanModel("zakr2", passwordEncoder().encode("qwerty"), "Ryszard", "Gosztyła", AccessEnum.USER_ZAKRYS.getRoleDescription());
+        ChurchWorker sacristian3 = new SacristanModel("zakr3", passwordEncoder().encode("qwerty"), "Antoni", "Sikorski", AccessEnum.USER_ZAKRYS.getRoleDescription());
+        ChurchWorker sacristian4 = new SacristanModel("Mich_Zakrz", passwordEncoder().encode("qwerty"), "Michał", "Zakrzewski", AccessEnum.USER_ZAKRYS.getRoleDescription());
         churchWorkerRepository.save(priest1);
         churchWorkerRepository.save(priest2);
         churchWorkerRepository.save(priest3);
         churchWorkerRepository.save(sacristian1);
         churchWorkerRepository.save(sacristian2);
+        churchWorkerRepository.save(sacristian3);
+        churchWorkerRepository.save(sacristian4);
 
         BookOfIntentionModel intentionModel1 = new BookOfIntentionModel(LocalDate.of(2020, 1, 20), LocalTime.of(8, 0), "W dniu 19 urodzin Marysi.", priest1.getFirstName() + " " + priest1.getLastName(), "brak", "100zł", sacristian1);
         BookOfIntentionModel intentionModel2 = new BookOfIntentionModel(LocalDate.of(2020, 2, 12), LocalTime.of(18, 0), "Za + Izoldę w 13 rocznicę śmierci.", priest2.getFirstName() + " " + priest2.getLastName(), "brak", "80zł", priest2);
