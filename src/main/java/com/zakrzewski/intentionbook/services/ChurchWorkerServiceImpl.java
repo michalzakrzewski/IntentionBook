@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,7 +22,9 @@ public class ChurchWorkerServiceImpl {
     }
 
     public List<ChurchWorker> getAllChurchWorker(){
-        return churchWorkerRepository.findAll();
+        List<ChurchWorker> allChurchWorkers = churchWorkerRepository.findAll();
+        Collections.sort(allChurchWorkers, Comparator.comparing(ChurchWorker::getLastName).thenComparing(ChurchWorker::getAccessEnum));
+        return allChurchWorkers;
     }
 
     public List<ChurchWorker> getAllSacristian(){
