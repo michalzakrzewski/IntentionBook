@@ -2,18 +2,15 @@ package com.zakrzewski.intentionbook.controllers;
 
 import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
 import com.zakrzewski.intentionbook.entities.BookOfIntentionModel;
-import com.zakrzewski.intentionbook.entities.PriestModel;
-import com.zakrzewski.intentionbook.enums.AccessEnum;
 import com.zakrzewski.intentionbook.services.BookOfIntentionsServiceImpl;
-import com.zakrzewski.intentionbook.services.ChurchWorkerDetailsServiceImpl;
 import com.zakrzewski.intentionbook.services.ChurchWorkerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class BookOfIntentionController {
@@ -43,6 +40,9 @@ public class BookOfIntentionController {
 
         List<ChurchWorker> allChurchWorkers = churchWorkerDetailsService.getAllChurchWorker();
         model.addAttribute("whoAddIntention", allChurchWorkers);
+
+        LocalDate date = LocalDate.now();
+        model.addAttribute("now", date);
         return "add-new-intention";
     }
 
