@@ -1,4 +1,4 @@
-package com.zakrzewski.intentionbook.configuration;
+package com.zakrzewski.intentionbook.configurations;
 
 import com.zakrzewski.intentionbook.enums.AccessEnum;
 import com.zakrzewski.intentionbook.services.ChurchWorkerDetailsServiceImpl;
@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/add-new-intention").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
                 .antMatchers("/show-all-workers").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority())
+                .antMatchers("/calendar-info").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
                 .and()
                 .httpBasic()
                 .and()
