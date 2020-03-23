@@ -5,6 +5,8 @@ import com.zakrzewski.intentionbook.repositories.BookOfIntentionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -18,7 +20,9 @@ public class BookOfIntentionsServiceImpl {
     }
 
     public List<BookOfIntentionModel> getAllIntentions(){
-        return bookOfIntentionRepository.findAll();
+        List<BookOfIntentionModel> intentions = bookOfIntentionRepository.findAll();
+        intentions.sort(Comparator.comparing(BookOfIntentionModel::getDateOfMass));
+        return intentions;
     }
 
     public BookOfIntentionModel getOneIntentionById(Long id){

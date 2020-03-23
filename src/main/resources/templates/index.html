@@ -41,6 +41,7 @@
             <th>Intencja</th>
             <th>Celebrans</th>
             <th>Intencję przyjął</th>
+            <th sec:authorize="isAuthenticated()">Przyjęta ofiara (zł)</th>
         </tr>
         </thead>
         <tbody>
@@ -50,6 +51,7 @@
             <td th:text="${ourIntention.getDescriptionOfIntention()}"/>
             <td th:text="${ourIntention.getWhichPriest()}"/>
             <td th:text="${ourIntention.getWhoAddIntention().getFullName()}"/>
+            <td sec:authorize="isAuthenticated()" th:text="${ourIntention.getPayment()}"/>
         </tr>
         </tbody>
     </table>
