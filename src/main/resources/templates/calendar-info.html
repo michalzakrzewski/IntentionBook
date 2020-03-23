@@ -50,7 +50,7 @@
         </tr>
 
 
-        <tr th:each="calendar : ${calendarApi}">
+        <tr style="background-color: #24a2d1;" th:each="calendar : ${calendarApi}">
             <td th:text="${calendar.getDate()}"/>
             <td>
                 <p th:each="celebrations : ${calendar.getCelebrations()}">
