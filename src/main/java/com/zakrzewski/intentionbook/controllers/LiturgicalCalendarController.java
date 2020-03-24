@@ -10,12 +10,12 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Controller
-public class LiturgicalCalendar {
+public class LiturgicalCalendarController {
 
     private RestTemplate restTemplate;
 
     @Autowired
-    public LiturgicalCalendar(RestTemplate restTemplate) {
+    public LiturgicalCalendarController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
