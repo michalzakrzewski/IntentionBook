@@ -20,10 +20,10 @@
     </ul>
 </nav>
 <div class="myForm">
-    <form th:action="@{/generate}">
+    <form th:action="@{/generate}" th:target="_blank">
         <div class="form-group col-lg-3">
             <label>Data Mszy Świętej:</label>
-            <input type="date" th:min="${minDate}" th:value="*{dateOfMass}">
+            <input type="date" th:min="${minDate}" th:name="dateMass" th:required="required">
         </div>
         <div class="form-group col-lg-3">
             <button type="submit" class="btn btn-primary">Generuj intencję</button>
