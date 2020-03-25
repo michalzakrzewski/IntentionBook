@@ -40,8 +40,7 @@ public class IntentionDownloadController {
 
     @RequestMapping(value = "/generate", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> generateIntentionFile(@RequestParam(value = "dateMass") String dateMass){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate ourDate = LocalDate.parse(dateMass, formatter);
+        LocalDate ourDate = bookOfIntentionsService.formatStringToLocalDate(dateMass);
         return intentionDownloadService.intentionReportGenerate(LocalDate.of(ourDate.getYear(), ourDate.getMonth(), ourDate.getDayOfMonth()));
     }
 }
