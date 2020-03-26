@@ -18,45 +18,56 @@ import java.util.List;
 public class GeneratePdfIntention {
     private static final Logger logger = LoggerFactory.getLogger(GeneratePdfIntention.class);
 
+    private PdfPTable table;
+    private Font headFont;
+    private PdfPCell hCell;
+    private Document document;
+    private ByteArrayOutputStream outPutStream;
+    private String showDateFormat;
+
+    private PdfPCell dateCell;
+    private PdfPCell intentionCell;
+
+    private void createPdfTable(int numColumns, int widthPercentage, int[] setWidths) throws DocumentException {
+        table = new PdfPTable(numColumns);
+        table.setWidthPercentage(widthPercentage);
+        table.setWidths(setWidths);
+    }
+
+    private Font createFont(String fontFactory){
+        return headFont = FontFactory.getFont(fontFactory);
+    }
+
+    private void createCellAndAddToTable(String cellName, Font font, int horizontalAlignment, PdfPCell cell, PdfPTable table){
+        cell = new PdfPCell(new Phrase(cellName, font));
+        cell.setHorizontalAlignment(horizontalAlignment);
+        table.addCell(cell);
+    }
+
+    private void createCellWithTimeOfMas(String timeOfMass, int setPaddingLeft, int verticalAlignment, int setHorizontalAlignment, PdfPCell cell, PdfPTable table){
+        cell = new PdfPCell(new Phrase(timeOfMass));
+        cell.setPaddingLeft(setPaddingLeft);
+        cell.setVerticalAlignment(verticalAlignment);
+        cell.setHorizontalAlignment(setHorizontalAlignment);
+        table.addCell(cell);
+    }
+
     public ByteArrayInputStream intentionReport(List<BookOfIntentionModel> intentionModelList, LocalDate dateOfMass){
-        Document document = new Document();
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        String showDateFormat = "Data: " + dateOfMass + "\n" + "Godz.";
-        //TODO how to make this like a builder design pattern?
+        document = new Document();
+        outPutStream = new ByteArrayOutputStream();
+        showDateFormat = "Data: " + dateOfMass + "\n" + "Godz.";
         try {
-            PdfPTable table = new PdfPTable(2);
-            table.setWidthPercentage(80);
-            table.setWidths(new int[]{1, 3});
-
-            Font headFont = FontFactory.getFont(FontFactory.TIMES_ROMAN);
-
-            PdfPCell hCell;
-            hCell = new PdfPCell(new Phrase(showDateFormat, headFont));
-            hCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hCell);
-
-            hCell = new PdfPCell(new Phrase("Intencja", headFont));
-            hCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hCell);
+            createPdfTable(2, 80, new int[] {1, 3});
+            createFont(FontFactory.TIMES_ROMAN);
+            createCellAndAddToTable(showDateFormat, headFont, Element.ALIGN_CENTER, hCell, table);
+            createCellAndAddToTable("Intencja", headFont, Element.ALIGN_CENTER, hCell, table);
 
             for (BookOfIntentionModel intentionModel : intentionModelList){
-                PdfPCell dateCell;
-                dateCell = new PdfPCell(new Phrase(intentionModel.getTimeOfMass().toString()));
-                dateCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                dateCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(dateCell);
-
-
-                PdfPCell intentionCell;
-                intentionCell = new PdfPCell(new Phrase(intentionModel.getDescriptionOfIntention()));
-                intentionCell.setPaddingLeft(5);
-                intentionCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                intentionCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-                table.addCell(intentionCell);
-
+                createCellWithTimeOfMas(intentionModel.getTimeOfMass().toString(), 0, Element.ALIGN_MIDDLE, Element.ALIGN_CENTER, dateCell, table);
+                createCellWithTimeOfMas(intentionModel.getDescriptionOfIntention(), 5, Element.ALIGN_MIDDLE, Element.ALIGN_LEFT, intentionCell, table);
             }
 
-            PdfWriter.getInstance(document, outputStream);
+            PdfWriter.getInstance(document, outPutStream);
             document.open();
             document.add(table);
 
@@ -66,7 +77,7 @@ public class GeneratePdfIntention {
             logger.error("Error: {0}", e);
         }
 
-        return new ByteArrayInputStream(outputStream.toByteArray());
+        return new ByteArrayInputStream(outPutStream.toByteArray());
 
     }
 }
