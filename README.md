@@ -1,4 +1,5 @@
 # IntentionBook
+Działanie aplikacji: http://intention-book.herokuapp.com
 ## Spis treści
 * [O aplikacji](#o-aplikacji)
 * [Technologie](#technologie)
@@ -6,7 +7,6 @@
 
 ## O aplikacji
 Aplikacja ma na celu imitować księgę mszalną w której zapisywane są intencję Mszy Świętej. 	
-Działanie aplikacji: http://intention-book.herokuapp.com
 ## Technologie
 Wykorzystane technologie
 * IntelliJ IDEA
