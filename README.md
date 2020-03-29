@@ -1,4 +1,5 @@
 # IntentionBook
+Działanie aplikacji: http://intention-book.herokuapp.com
 ## Spis treści
 * [O aplikacji](#o-aplikacji)
 * [Technologie](#technologie)
