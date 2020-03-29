@@ -29,13 +29,7 @@ public class IntentionBookApplication {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
-
 }
