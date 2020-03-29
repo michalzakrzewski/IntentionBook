@@ -22,7 +22,7 @@ public class BookOfIntentionsServiceImpl {
 
     public List<BookOfIntentionModel> getAllIntentions(){
         List<BookOfIntentionModel> intentions = bookOfIntentionRepository.findAll();
-        intentions.sort(Comparator.comparing(BookOfIntentionModel::getDateOfMass));
+        intentions.sort(Comparator.comparing(BookOfIntentionModel::getDateOfMass).reversed());
         return intentions;
     }
 

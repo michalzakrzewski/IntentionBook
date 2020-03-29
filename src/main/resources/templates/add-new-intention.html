@@ -23,19 +23,19 @@
     <form th:action="@{/add-intention}" method="post" th:object="${newIntention}">
         <div class="form-group col-lg-3">
             <label for="dateOfMass">Data Mszy Świętej:</label>
-            <input type="date" th:min="${now}" class="form-control" th:field="*{dateOfMass}" th:value="*{dateOfMass}" id="dateOfMass" placeholder="Wprowadź datę">
+            <input type="date" th:min="${now}" class="form-control" th:field="*{dateOfMass}" th:value="*{dateOfMass}" id="dateOfMass" placeholder="Wprowadź datę" th:required="required">
         </div>
         <div class="form-group col-lg-3">
             <label for="timeOfMass">Godzina Mszy Świętej: </label>
-            <input type="time" class="form-control" th:field="*{timeOfMass}"  id="timeOfMass" placeholder="Wprowadź godzinę">
+            <input type="time" class="form-control" th:field="*{timeOfMass}"  id="timeOfMass" placeholder="Wprowadź godzinę" th:required="required">
         </div>
         <div class="form-group col-lg-3">
             <label for="intentionMass">Intencja</label>
-            <input type="text" class="form-control" th:field="*{descriptionOfIntention}"  id="intentionMass" placeholder="Wprowadź intencję">
+            <input type="text" class="form-control" th:field="*{descriptionOfIntention}"  id="intentionMass" placeholder="Wprowadź intencję" th:required="required">
         </div>
         <div class="form-group col-lg-3">
             <label>Celebrans</label>
-            <select class="form-control" th:field="*{whichPriest}"  id="churchPriest" name="churchPriest">
+            <select class="form-control" th:field="*{whichPriest}"  id="churchPriest" name="churchPriest" th:required="required">
                 <option th:each="priest : ${whichPriest}"
                         th:value="${priest.fullName}"
                         th:text="${priest.firstName} + ' ' +${priest.lastName}"></option>
@@ -43,15 +43,15 @@
         </div>
         <div class="form-group col-lg-3">
             <label for="intentionMass">Uwagi</label>
-            <input type="text" class="form-control" th:field="*{othersAttention}"  id="othersComments" placeholder="Wprowadź uwagi">
+            <input type="text" class="form-control" th:field="*{othersAttention}"  id="othersComments" placeholder="Wprowadź uwagi" th:required="required">
         </div>
         <div class="form-group col-lg-3">
             <label for="intentionMass">Złożona ofiara</label>
-            <input type="text" class="form-control" th:field="*{payment}"  id="paymentIntention" placeholder="Wprowadź ofiarę">
+            <input type="text" class="form-control" th:field="*{payment}"  id="paymentIntention" placeholder="Wprowadź ofiarę" th:required="required">
         </div>
         <div class="form-group col-lg-3">
             <label>Kto dodał intencję</label>
-            <select class="form-control" th:field="*{whoAddIntention}"  id="whoAddIntention" name="whoAddIntention">
+            <select class="form-control" th:field="*{whoAddIntention}"  id="whoAddIntention" name="whoAddIntention" th:required="required">
                 <option th:each="worker : ${whoAddIntention}"
                         th:value="${worker.id}"
                         th:text="${worker.fullName}"></option>

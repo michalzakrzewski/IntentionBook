@@ -2,7 +2,6 @@ package com.zakrzewski.intentionbook.controllers;
 
 import com.zakrzewski.intentionbook.services.BookOfIntentionsServiceImpl;
 import com.zakrzewski.intentionbook.services.IntentionDownloadService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 
 @Controller
