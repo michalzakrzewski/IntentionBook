@@ -1,9 +1,9 @@
 package com.zakrzewski.intentionbook.controllers;
 
-import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
+import com.zakrzewski.intentionbook.entities.ChurchWorker;
 import com.zakrzewski.intentionbook.entities.BookOfIntentionModel;
 import com.zakrzewski.intentionbook.services.BookOfIntentionsServiceImpl;
-import com.zakrzewski.intentionbook.services.ChurchWorkerServiceImpl;
+import com.zakrzewski.intentionbook.services.ChurchWorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +16,10 @@ import java.util.List;
 public class BookOfIntentionController {
 
     private BookOfIntentionsServiceImpl bookOfIntentionsService;
-    private ChurchWorkerServiceImpl churchWorkerDetailsService;
+    private ChurchWorkerService churchWorkerDetailsService;
 
     @Autowired
-    public BookOfIntentionController(BookOfIntentionsServiceImpl bookOfIntentionsService, ChurchWorkerServiceImpl churchWorkerDetailsService) {
+    public BookOfIntentionController(BookOfIntentionsServiceImpl bookOfIntentionsService, ChurchWorkerService churchWorkerDetailsService) {
         this.bookOfIntentionsService = bookOfIntentionsService;
         this.churchWorkerDetailsService = churchWorkerDetailsService;
     }

@@ -2,7 +2,6 @@ package com.zakrzewski.intentionbook.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

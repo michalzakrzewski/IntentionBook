@@ -1,6 +1,6 @@
 package com.zakrzewski.intentionbook.repositories;
 
-import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
+import com.zakrzewski.intentionbook.entities.ChurchWorker;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

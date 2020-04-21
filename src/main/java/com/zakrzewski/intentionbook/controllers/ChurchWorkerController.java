@@ -1,7 +1,8 @@
 package com.zakrzewski.intentionbook.controllers;
 
-import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
-import com.zakrzewski.intentionbook.services.ChurchWorkerServiceImpl;
+import com.zakrzewski.intentionbook.entities.ChurchWorker;
+import com.zakrzewski.intentionbook.enums.AccessEnum;
+import com.zakrzewski.intentionbook.services.ChurchWorkerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ import java.util.List;
 @Controller
 public class ChurchWorkerController {
 
-    private ChurchWorkerServiceImpl churchWorkerService;
+    private ChurchWorkerService churchWorkerService;
 
     private Logger logger = LoggerFactory.getLogger(ChurchWorkerController.class);
 
     @Autowired
-    public ChurchWorkerController(ChurchWorkerServiceImpl churchWorkerService) {
+    public ChurchWorkerController(ChurchWorkerService churchWorkerService) {
         this.churchWorkerService = churchWorkerService;
     }
 
@@ -41,10 +42,18 @@ public class ChurchWorkerController {
         return churchWorkerService.getAllPriest();
     }
 
-    @RequestMapping(value = "/add-new-worker", method = RequestMethod.POST)
-    public ChurchWorker addNewWorker(@RequestBody ChurchWorker churchWorker){
-        return churchWorkerService.addNewChurchWorker(churchWorker);
+    @RequestMapping(value = "/create-new-worker-page")
+    public String addNewWorkerPage(Model model){
+        model.addAttribute("newWorker", new ChurchWorker());
+        return "create-new-worker";
     }
+
+    @RequestMapping(value = "/add-new-worker", method = RequestMethod.POST)
+    public String addNewWorker(ChurchWorker churchWorker){
+        churchWorkerService.addNewChurchWorker(churchWorker);
+        return "redirect:/";
+    }
+
 
     @RequestMapping(value = "/delete-worker/{id}", method = RequestMethod.DELETE)
     public void deleteWorker(@PathVariable Long id){

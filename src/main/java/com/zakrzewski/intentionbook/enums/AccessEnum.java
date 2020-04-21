@@ -1,6 +1,5 @@
 package com.zakrzewski.intentionbook.enums;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum AccessEnum implements GrantedAuthority {
@@ -23,4 +22,5 @@ public enum AccessEnum implements GrantedAuthority {
     public String getAuthority() {
         return getRoleDescription();
     }
+
 }

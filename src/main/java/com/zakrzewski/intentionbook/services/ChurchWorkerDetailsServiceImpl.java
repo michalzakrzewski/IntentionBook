@@ -1,6 +1,6 @@
 package com.zakrzewski.intentionbook.services;
 
-import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
+import com.zakrzewski.intentionbook.entities.ChurchWorker;
 import com.zakrzewski.intentionbook.repositories.ChurchWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
