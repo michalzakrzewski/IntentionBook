@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/show-all-workers").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority())
                 .antMatchers("/calendar-info").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
                 .antMatchers("/intention-generate").hasAnyAuthority(AccessEnum.SUPER_USER.getAuthority(), AccessEnum.USER_KAPLAN.getAuthority(), AccessEnum.USER_ZAKRYS.getAuthority())
+                .antMatchers("/create-new-worker-page").hasAuthority(AccessEnum.SUPER_USER.getAuthority())
                 .and()
                 .httpBasic()
                 .and()

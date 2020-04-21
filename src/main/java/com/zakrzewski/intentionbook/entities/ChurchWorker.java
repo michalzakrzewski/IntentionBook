@@ -1,4 +1,4 @@
-package com.zakrzewski.intentionbook.abstractClass;
+package com.zakrzewski.intentionbook.entities;
 
 import com.zakrzewski.intentionbook.enums.AccessEnum;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ import java.util.Collections;
 
 @Entity
 @Table(name = "church_worker")
-public abstract class ChurchWorker implements UserDetails {
+public class ChurchWorker implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +61,7 @@ public abstract class ChurchWorker implements UserDetails {
     public ChurchWorker() {
     }
 
-    private String concatName(){
+    public String concatName(){
         return this.getFirstName() + " " + this.getLastName();
     }
 

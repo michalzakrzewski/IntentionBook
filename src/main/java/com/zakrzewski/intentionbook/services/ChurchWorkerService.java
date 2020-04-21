@@ -1,7 +1,6 @@
 package com.zakrzewski.intentionbook.services;
 
-import com.zakrzewski.intentionbook.abstractClass.ChurchWorker;
-import com.zakrzewski.intentionbook.entities.PriestModel;
+import com.zakrzewski.intentionbook.entities.ChurchWorker;
 import com.zakrzewski.intentionbook.enums.AccessEnum;
 import com.zakrzewski.intentionbook.repositories.ChurchWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +11,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class ChurchWorkerServiceImpl {
+public class ChurchWorkerService {
 
     private ChurchWorkerRepository churchWorkerRepository;
 
     @Autowired
-    public ChurchWorkerServiceImpl(ChurchWorkerRepository churchWorkerRepository) {
+    public ChurchWorkerService(ChurchWorkerRepository churchWorkerRepository) {
         this.churchWorkerRepository = churchWorkerRepository;
     }
 
@@ -41,6 +40,7 @@ public class ChurchWorkerServiceImpl {
 
     public ChurchWorker addNewChurchWorker(ChurchWorker churchWorker){
         churchWorker.setWorkerPassword(new BCryptPasswordEncoder().encode(churchWorker.getWorkerPassword()));
+        churchWorker.setFullName(churchWorker.concatName());
         return churchWorkerRepository.save(churchWorker);
     }
 
